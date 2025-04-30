@@ -18,7 +18,7 @@ export default function Titulo(props) {
     return (
         <h1 className='display-5 text-success text-center mt-4 mb-5 fs-1'>
                 <Typewriter
-                    words={['Por Favor, Aguerde Estamos Buscando o Produto...']}
+                    words={['Por Favor, Aguarde Estamos Buscando o Produto...']}
                     loop={1}
                     cursor
                     cursorStyle='_'

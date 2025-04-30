@@ -1,13 +1,13 @@
-import Titulo from '@/components/Titulo'
-import Header from '../components/Header'
-import Carrossel from '../components/Carrossel'
+import { useEffect } from 'react'
+import { useRouter } from 'next/router'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Home() {
-  return (
-    <>
-      <Header />
-      <Carrossel />
-      <Titulo texto="Bem vindo à papelaria Rabisco!"/>
-    </>
-  )
+  const router = useRouter()
+
+  useEffect(() => {
+    router.push('/produtos')
+  }, [])
+
+  return null
 }

@@ -1,35 +1,31 @@
-# Importa as bibliotecas Flask, jsonify e request para criar a aplicação web e manipular requisições e respostas JSON.
 from flask import Flask, jsonify, request
-# Importa a biblioteca Flask-CORS para permitir requisições de diferentes origens (cross-origin).
 from flask_cors import CORS
-# Importa a biblioteca mysql.connector para conectar e interagir com o banco de dados MySQL.
 import mysql.connector
 from mysql.connector import Error
 import mysql.connector
 
-# Cria uma instância da aplicação Flask.
 app = Flask(__name__)
-# Habilita o CORS na aplicação Flask.
 CORS(app)
 
-# Estabelece a conexão com o banco de dados MySQL.
+# Configuração de conexão com o banco de dados
 DB_CONFIG = {
-    'host':'localhost',  # Endereço do servidor do banco de dados.
-    'user':'root',       # Nome de usuário do banco de dados.
-    'password':'senai',  # Senha do banco de dados.
-    'database':'papelaria'  # Nome do banco de dados.
+    'host':'localhost',
+    'user':'root',
+    'password':'senai',
+    'database':'papelaria'
 }
+
 def conecta_DB():
     conexaoDB = mysql.connector.connect(**DB_CONFIG)
     cursorDB = conexaoDB.cursor()
     return conexaoDB, cursorDB
 
-#função de fechar conexão DB
+
 def close_db(conexaoDB, cursorDB):
     cursorDB.close()
     conexaoDB.close()
 
-
+# Rota para cadastrar um novo produto
 @app.route('/produto', methods=['POST'])
 def cadastro_produto():
     conexaoDB = None
@@ -58,6 +54,7 @@ def cadastro_produto():
         if conexaoDB and cursorDB:
             close_db(conexaoDB, cursorDB)
 
+# Rota para listar todos os produtos
 @app.route('/produto', methods=['GET'])
 def listar_produtos():
     conexaoDB = None
@@ -78,6 +75,7 @@ def listar_produtos():
         if conexaoDB and cursorDB:
             close_db(conexaoDB, cursorDB)
 
+# Rota para obter um produto específico pelo ID
 @app.route('/produto/<int:id_produto>', methods=['GET'])
 def get_produto(id_produto):
     conexaoDB = None
@@ -106,6 +104,7 @@ def get_produto(id_produto):
         if conexaoDB and cursorDB:
             close_db(conexaoDB, cursorDB)
 
+# Rota para atualizar os dados de um produto
 @app.route('/produto', methods=['PUT'])
 def update_produto():
     conexaoDB = None
@@ -135,6 +134,7 @@ def update_produto():
         if conexaoDB and cursorDB:
             close_db(conexaoDB, cursorDB)
 
+# Rota para deletar um produto pelo ID
 @app.route('/produto', methods=['DELETE'])
 def delete_produto():
     conexaoDB = None
@@ -174,6 +174,6 @@ def erro_servidor(erro):
     return jsonify({'erro': 'Erro interno no Servidor'}), 500   
         
         
-# Inicia a aplicação Flask no host 0.0.0.0 e na porta 80.
+# Inicia o servidor
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5000)

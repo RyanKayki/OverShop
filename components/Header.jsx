@@ -33,7 +33,7 @@ export default function Header(props) {
 }
 
     return (
-        <nav className="navbar navbar-expand-lg bg-white border-b-2 border-black " data-bs-theme="white">
+        <nav className="navbar navbar-expand-lg bg-white border-b-2 border-black" data-bs-theme="white">
             <div className="container-fluid" >
                 <img src="logo/logomarca.png" className={styles.img}/>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
