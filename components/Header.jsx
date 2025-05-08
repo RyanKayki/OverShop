@@ -51,21 +51,20 @@ export default function Header(props) {
                             <Link className="nav-link active" aria-current="page" href="/produtos">Impressoras</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link active" aria-current="page" href="/contato">Peças de Pc</Link>
+                            <Link className="nav-link active" aria-current="page" href="/contatos">Peças de Pc</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link active" aria-current="page" href="/contato">Reparo</Link>
+                            <Link className="nav-link active" aria-current="page" href="/contatos">Reparo</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link active" aria-current="page" href="/contato">Outros Produtos</Link>
+                            <Link className="nav-link active" aria-current="page" href="/contatos">Outros Produtos</Link>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link active" aria-current="page" href="/contato">Contatos</Link>
+                            <Link className="nav-link active" aria-current="page" href="/contatos">Contatos</Link>
                         </li>
                         <li>
                             {props.title}
                         </li>
-            
                     </ul>
                     {router.pathname == '/produtos' && (
                         <form className="d-flex align-items-center gap-2" role="search" onSubmit={handleSearchSubmit}>

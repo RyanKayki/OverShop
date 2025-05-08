@@ -2,6 +2,7 @@
 import axios from 'axios'
 const api = axios.create({ baseURL: 'http://127.0.0.1:5000' })
 
+// Puxando Todos Produtos
 export async function getProdutos() {
     try {
         const response = await api.get('/produto')
@@ -11,6 +12,7 @@ export async function getProdutos() {
     }
 }
 
+// Puxando Produtos Pelo Seu ID
 export async function getProdutoId(id) {
     try {
         const response = await api.get('/produto/' + id)

@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import TituloCont from '@/components/TituloCont';
-import Header from '@/components/Header'; 
+import Header from '@/components/Header';
 import styles from '@/styles/Contato.module.css';
 import { getContatos } from '@/services/apiContato';
-import CardListCont from '@/components/CardListCont'; 
+import CardListCont from '@/components/CardListCont';
 
-export default function Contatos() {
+export default function ContatoPage() {
   const [contatos, setContatos] = useState([]);
 
   async function buscaContatos() {
@@ -19,16 +18,13 @@ export default function Contatos() {
 
   useEffect(() => {
     buscaContatos();
-    const atualiza = setInterval(buscaContatos, 5000); 
-    return () => {
-      clearInterval(atualiza);
-    };
+    const atualiza = setInterval(buscaContatos, 5000);
+    return () => clearInterval(atualiza);
   }, []);
 
   return (
     <>
       <Header />
-      <TituloCont texto="Entre em contato conosco!" />
       <CardListCont contatos={contatos} />
       <div className={styles.rabiscoInfo}>
         <p>

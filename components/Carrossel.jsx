@@ -25,7 +25,7 @@ export default function Carrossel({ onChangeBackground }) {
                     <img
                         src="carrossel/bannerMsi.png"
                         className="d-flex justify-content-center w-100 mx-auto"
-                        style={{ height: '350px' }}
+                        style={{ height: '450px' }}
                         alt="Imagem 1"
                     />
                 </div>
@@ -35,7 +35,7 @@ export default function Carrossel({ onChangeBackground }) {
                     <img
                         src="carrossel/bannerAorus1.png"
                         className="d-flex justify-content-center w-100 mx-auto"
-                        style={{ height: '350px' }}
+                        style={{ height: '450px' }}
                         alt="Imagem 2"
                     />
                 </div>

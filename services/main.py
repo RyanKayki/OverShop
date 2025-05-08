@@ -12,7 +12,8 @@ DB_CONFIG = {
     'host':'localhost',
     'user':'root',
     'password':'senai',
-    'database':'papelaria'
+    'database':'papelaria',
+    'auth_plugin':'mysql_native_password'
 }
 
 def conecta_DB():
@@ -36,13 +37,14 @@ def cadastro_produto():
         descricao = dados.get('descricao')
         preco = dados.get('preco')
         quantidade = dados.get('quantidade')
+        img = dados.get('img')  # <- nova linha
         
-        if not all([nome, descricao, preco, quantidade]):
+        if not all([nome, descricao, preco, quantidade, img]):
             return jsonify({'erro': 'Dados incompletos'}), 400
         
         conexaoDB, cursorDB = conecta_DB()
-        comandoSQL = 'INSERT INTO Produto (nome, descricao, preco, quantidade) VALUES (%s,%s,%s,%s)'
-        cursorDB.execute(comandoSQL, (nome, descricao, preco, quantidade))
+        comandoSQL = 'INSERT INTO Produto (img, nome, descricao, preco, quantidade) VALUES (%s,%s,%s,%s,%s)'
+        cursorDB.execute(comandoSQL, (img, nome, descricao, preco, quantidade))
         conexaoDB.commit()
         
         return jsonify({'mensagem': 'Cadastro realizado'}), 201
@@ -53,6 +55,7 @@ def cadastro_produto():
     finally:
         if conexaoDB and cursorDB:
             close_db(conexaoDB, cursorDB)
+
 
 # Rota para listar todos os produtos
 @app.route('/produto', methods=['GET'])
@@ -116,7 +119,8 @@ def update_produto():
         descricao = dados.get('descricao')
         preco = dados.get('preco')
         quantidade = dados.get('quantidade')
-        
+        img = dados.get('img')
+
         if not idproduto or not nome or not descricao or not preco or not quantidade:
             return jsonify({'erro': 'Faltando informação'}), 400
         
